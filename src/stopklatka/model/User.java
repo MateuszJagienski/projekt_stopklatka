@@ -117,6 +117,4 @@ public class User {
         this.role.set(role);
     }
 
-
-
 }
