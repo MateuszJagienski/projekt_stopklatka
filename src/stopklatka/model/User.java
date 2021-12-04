@@ -9,11 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Model class for a Person.
- *
- * @author Marco Jakob
- */
+
 public class User {
 
     private final StringProperty firstName;
@@ -25,13 +21,7 @@ public class User {
     private final StringProperty role;
 
 
-    /**
-     * Constructor with some initial data.
-     * @param firstName
-     * @param lastName
-     * @param phoneNumber
-     * @param role
-     */
+
     public User(String firstName, String lastName, String email, String phoneNumber, String username, String password, String role) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
