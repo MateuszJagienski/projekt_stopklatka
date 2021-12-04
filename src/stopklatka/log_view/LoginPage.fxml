@@ -58,7 +58,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="loginUsernameField" prefHeight="50.0" prefWidth="50.0" promptText="Username" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-                  <TextField fx:id="passwordUsernameField" prefHeight="50.0" prefWidth="50.0" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="4" />
+                  <TextField fx:id="loginPasswordField" prefHeight="50.0" prefWidth="50.0" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="4" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
                </children>
