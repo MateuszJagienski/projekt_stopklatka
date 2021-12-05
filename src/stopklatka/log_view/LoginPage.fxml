@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -16,7 +17,10 @@
    <items>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0">
          <children>
-            <ImageView fitHeight="697.0" fitWidth="527.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="500.0" fitWidth="400.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/clapboard.png" />
+               </image></ImageView>
          </children>
       </AnchorPane>
       <FlowPane prefHeight="695.0" prefWidth="517.0">
@@ -45,11 +49,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Log In" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="8" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="100.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/Camera.png" />
+                     </image>
+                  </ImageView>
                   <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Login" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="5" GridPane.rowSpan="2" />
                   <Button fx:id="signupButton" mnemonicParsing="false" onMouseClicked="#signupButtonPressed" prefHeight="50.0" prefWidth="200.0" text="Sign Up" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="8" />
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="203.0" text="Don’t have an account?" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="7">
@@ -59,8 +63,24 @@
                   </Label>
                   <TextField fx:id="loginUsernameField" prefHeight="50.0" prefWidth="50.0" promptText="Username" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="2" />
                   <TextField fx:id="loginPasswordField" prefHeight="50.0" prefWidth="50.0" promptText="Password" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="4" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <image>
+                        <Image url="@../images/Lock.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                     <image>
+                        <Image url="@../images/User.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="engbutton" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#setEngbutton" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7">
+                     <image>
+                        <Image url="@../images/gbflag.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="polbutton" accessibleRole="BUTTON" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+                     <image>
+                        <Image url="@../images/plflag.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
          </children>

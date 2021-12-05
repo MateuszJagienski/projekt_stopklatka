@@ -15,7 +15,7 @@ public class MainApp extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(pathToFXML));
 
-            Scene scene = new Scene(root, 1350, 850);
+            Scene scene = new Scene(root);
             theStage.setTitle(pageTitle);
             theStage.setScene(scene);
             theStage.show();
@@ -35,7 +35,7 @@ public class MainApp extends Application {
         theStage = stage;
 
         Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/log_view/LoginPage.fxml"));
-        Scene scene = new Scene(root,1350, 850);  //SETS A NEW SCENE WITH THE LOADED FXML AND DEFINES THE WDITH/HEIGHT
+        Scene scene = new Scene(root);  //SETS A NEW SCENE WITH THE LOADED FXML AND DEFINES THE WDITH/HEIGHT
         theStage.setScene(scene);   //SETS THE SCENE TO THE STAGE
         theStage.show();
     }
