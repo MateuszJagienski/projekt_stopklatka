@@ -21,43 +21,33 @@ import java.util.regex.Pattern;
 public class SignUpPageController implements Initializable {
 
     @FXML
-    private Button signupSubmitButton, signupCancelButton;
+    private Button signupSubmit, signupCancel, signupSelectImage;
     @FXML
-    private TextField signupFirstNameField, signupLastNameField, signupEmailField, signupPhoneFiled,
-            signupUsernameField;
+    private TextField signupUsername, signupEmail;
     @FXML
-    private PasswordField signupPasswordField, signupConfirmPasswordField;
+    private PasswordField signupPassword, signupConfirmPassword;
 
-    private MainApp mainApp;
+    private final MainApp mainApp = new MainApp();
 
     private Connection connection;
     private DatabaseConnection databaseConnection;
     private PreparedStatement pst;
 
     @FXML
-    public void setSignupCancelButton(MouseEvent mouseEvent) {
-        Stage stage = (Stage) signupCancelButton.getScene().getWindow();
-        stage.close();
+    public void setSignupCancel(MouseEvent mouseEvent) {
+        mainApp.goToNextPage("/stopklatka/log_view/LoginPage.fxml", "Login Page");
     }
 
     @FXML
-    public void setSignupSubmitButton(MouseEvent mouseEvent) {
+    public void setSignupSubmit(MouseEvent mouseEvent) {
         if (validateUser()) {
-            System.out.println("Gituwa");
-            User newUser = new User(signupFirstNameField.getText(), signupLastNameField.getText(),
-                            signupEmailField.getText(), signupPhoneFiled.getText(),
-                            signupUsernameField.getText(), signupPasswordField.getText(), "Customer");
 
 
-            String insertUser = "INSERT INTO `projekt_stopklatka`.`user`\n" +
-                    "(`first_name`,\n" +
-                    "`last_name`,\n" +
+            String insertUser = "INSERT INTO `stopklatka`.`user`\n" +
+                    "(`username`,\n" +
                     "`email`,\n" +
-                    "`phone_number`,\n" +
-                    "`role`,\n" +
-                    "`password`,\n" +
-                    "`username`)\n" +
-                    "VALUES (?,?,?,?,?,?,?)";
+                    "`password`) " +
+                    "VALUES (?,?,?)";
 
             System.out.println(insertUser);
 
@@ -69,13 +59,9 @@ public class SignUpPageController implements Initializable {
             }
 
             try {
-                pst.setString(1, signupFirstNameField.getText());
-                pst.setString(2, signupLastNameField.getText());
-                pst.setString(3, signupEmailField.getText());
-                pst.setString(4, signupPhoneFiled.getText());
-                pst.setString(5, "Customer");
-                pst.setString(6, signupPasswordField.getText());
-                pst.setString(7, signupUsernameField.getText());
+                pst.setString(1, signupUsername.getText());
+                pst.setString(2, signupEmail.getText());
+                pst.setString(3, signupPassword.getText());
 
                 pst.executeUpdate();
 
@@ -89,37 +75,26 @@ public class SignUpPageController implements Initializable {
         } else {
             System.out.println("nie gituwa");
         }
+
+        mainApp.goToNextPage("/stopklatka/log_view/LoginPage.fxml", "Login Page");
     }
 
     @FXML
     public boolean validateUser() {
-        Pattern name = Pattern.compile("^[a-zA-Z]+$", Pattern.CASE_INSENSITIVE);
-        Pattern password = Pattern.compile("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$");
-        //password must contain 1 number (0-9)
-//        password must contain 1 uppercase letters
-//        password must contain 1 lowercase letters
-//        password must contain 1 non-alpha numeric number
-//        password is 8-16 characters with no space
-        Pattern phoneNumber = Pattern.compile("^\\d{9}$");
+        Pattern username = Pattern.compile("^[a-zA-Z]+$");
+        Pattern password = Pattern.compile("([a-zA-Z\\d]){3,15}");
         Pattern email = Pattern.compile(".+@.+\\..+");
-        Pattern username = Pattern.compile("\\w+");
 
 
-        System.out.println(name.matcher(signupFirstNameField.getText()).find() + " " +
-                name.matcher(signupLastNameField.getText()).find() + " " +
-                password.matcher(signupPasswordField.getText()).find() + " " +
-                phoneNumber.matcher(signupPhoneFiled.getText()).find() + " " +
-                email.matcher(signupEmailField.getText()).find() + " " +
-                username.matcher(signupUsernameField.getText()).find());
+        System.out.println(username.matcher(signupUsername.getText()).matches() + " " +
+                password.matcher(signupPassword.getText()).matches() + " " + signupPassword.getText().equals(signupConfirmPassword.getText()) + " " +
+                email.matcher(signupEmail.getText()).matches());
 
-        return name.matcher(signupFirstNameField.getText()).find() &&
-                name.matcher(signupLastNameField.getText()).find() &&
-                password.matcher(signupPasswordField.getText()).find() &&
-                phoneNumber.matcher(signupPhoneFiled.getText()).find() &&
-                email.matcher(signupEmailField.getText()).find() &&
-                username.matcher(signupUsernameField.getText()).find() &&
-                password.matcher(signupConfirmPasswordField.getText()).find() &&
-                signupPasswordField.getText().equals(signupConfirmPasswordField.getText());
+
+        return username.matcher(signupUsername.getText()).matches() &&
+                password.matcher(signupPassword.getText()).matches() &&
+                signupPassword.getText().equals(signupConfirmPassword.getText()) &&
+                email.matcher(signupEmail.getText()).matches();
 
 
     }
@@ -130,5 +105,7 @@ public class SignUpPageController implements Initializable {
     }
 
     public static void main(String[] args) {
+        Pattern xd = Pattern.compile("([a-zA-Z\\d]){3,6}");
+        System.out.println(xd.matcher("123").matches());
     }
 }
