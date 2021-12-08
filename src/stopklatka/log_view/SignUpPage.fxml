@@ -3,9 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -28,25 +25,6 @@
                   <ImageView fitHeight="75.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
-            <MenuBar minHeight="-Infinity" prefHeight="50.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
          </children>
       </VBox>
    </top>
@@ -65,7 +43,7 @@
       </Pane>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="683.0" prefWidth="712.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="100.0" prefWidth="700.0" text="SIGN UP PAGE">
                <font>
@@ -74,8 +52,9 @@
             </Label>
             <GridPane hgap="15.0" prefHeight="575.0" prefWidth="700.0" vgap="15.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" prefWidth="228.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="472.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="250.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="20.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -93,22 +72,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="First Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Username:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" text="Last Name:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" text="E-mail:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label contentDisplay="RIGHT" text="E-mail:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Label contentDisplay="RIGHT" text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label contentDisplay="CENTER" text="Phone Number:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Label contentDisplay="CENTER" text="Confirm password:" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -118,22 +97,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label contentDisplay="RIGHT" text="Username:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="RIGHT" text="Password" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="RIGHT" text="Confirm Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label contentDisplay="RIGHT" text="Avatar:" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                  <Label contentDisplay="RIGHT" text="Avatar:" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -155,20 +119,23 @@
                         </RadioButton>
                     </buttons>
                   </ButtonBar>
-                  <TextField fx:id="signupFirstNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="first name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="signupLastNameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="last name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="signupEmailField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="signupPhoneFiled" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="123 456 789" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="signupUsernameField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="username" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <PasswordField fx:id="signupPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <PasswordField fx:id="signupConfirmPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="confirm password" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Button fx:id="signupSlectImageButton" mnemonicParsing="false" text="Select Image" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                  <TextField fx:id="signupUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="signupEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="e-mail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="signupSelectImage" mnemonicParsing="false" text="Select Image" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                     <buttons>
-                        <Button fx:id="signupSubmitButton" mnemonicParsing="false" onMouseClicked="#setSignupSubmitButton" prefHeight="25.0" prefWidth="302.0" text="Submit" />
-                      <Button fx:id="signupCancelButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setSignupCancelButton" prefHeight="25.0" text="Cancel" />
+                        <Button fx:id="signupSubmit" mnemonicParsing="false" onMouseClicked="#setSignupSubmit" prefHeight="25.0" prefWidth="302.0" text="Submit" />
+                      <Button fx:id="signupCancel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#setSignupCancel" prefHeight="25.0" text="Cancel" />
                     </buttons>
                   </ButtonBar>
+                  <PasswordField fx:id="signupPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="signupConfirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" promptText="confirm password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>
