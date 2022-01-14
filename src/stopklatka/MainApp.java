@@ -34,9 +34,9 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         theStage = stage;
 
-        Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/log_view/LoginPage.fxml"));
-        Scene scene = new Scene(root);  //SETS A NEW SCENE WITH THE LOADED FXML AND DEFINES THE WDITH/HEIGHT
-        theStage.setScene(scene);   //SETS THE SCENE TO THE STAGE
+        Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/admin_view/AdminSettingView.fxml"));
+        Scene scene = new Scene(root);
+        theStage.setScene(scene);
         theStage.show();
     }
 
