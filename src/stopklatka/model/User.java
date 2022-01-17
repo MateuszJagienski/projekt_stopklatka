@@ -12,109 +12,76 @@ import javafx.beans.property.StringProperty;
 
 public class User {
 
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty email;
-    private final StringProperty phoneNumber;
-    private final StringProperty username;
-    private final StringProperty password;
-    private final StringProperty role;
+    private String username;
+    private String email;
+    private String avatar;
+    private String password;
+    private int id;
+    private int quantity;
+    private UserAccount userAccount;
 
-
-
-    public User(String firstName, String lastName, String email, String phoneNumber, String username, String password, String role) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.email = new SimpleStringProperty(email);
-        this.username = new SimpleStringProperty(username);
-        this.password = new SimpleStringProperty(password);
-        this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        this.role = new SimpleStringProperty(role);
-
-    }
-
-    public String getFirstName() {
-        return firstName.get();
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
-    }
-
-    public StringProperty firstNameProperty() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName.get();
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
-
-    public StringProperty lastNameProperty() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email.get();
-    }
-
-    public void setEmail(String email) {
-        this.email.set(email);
-    }
-
-    public StringProperty emailProperty() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber.get();
-    }
-
-    public StringProperty phoneNumberProperty() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber.set(phoneNumber);
+    public User(String username, String email, String password, String avatar, UserAccount userAccount) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.userAccount = userAccount;
     }
 
     public String getUsername() {
-        return username.get();
-    }
-
-    public StringProperty usernameProperty() {
         return username;
     }
 
     public void setUsername(String username) {
-        this.username.set(username);
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return password.get();
-    }
-
-    public StringProperty passwordProperty() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password.set(password);
+        this.password = password;
     }
 
-    public String getRole() {
-        return role.get();
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
-    public StringProperty roleProperty() {
-        return role;
+    public int getId() {
+        return id;
     }
 
-    public void setRole(String role) {
-        this.role.set(role);
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

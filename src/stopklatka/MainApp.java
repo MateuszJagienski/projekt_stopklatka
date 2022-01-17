@@ -10,7 +10,6 @@ public class MainApp extends Application {
 
     public static Stage theStage;
 
-
     public void goToNextPage(String pathToFXML, String pageTitle) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(pathToFXML));
@@ -29,18 +28,14 @@ public class MainApp extends Application {
         return theStage;
     }
 
-
     @Override
     public void start(Stage stage) throws Exception {
         theStage = stage;
-
-        Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/admin_view/AdminSettingView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/log_view/LoginPage.fxml"));
         Scene scene = new Scene(root);
         theStage.setScene(scene);
         theStage.show();
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

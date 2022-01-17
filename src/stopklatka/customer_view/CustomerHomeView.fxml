@@ -24,7 +24,6 @@
                <children>
                   <Button layoutX="520.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="130.0" text="Settings" />
                   <Button layoutX="390.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="130.0" text="Account" />
-                  <Button fx:id="testbtn" layoutX="338.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
                </children>
             </AnchorPane>
          </children>
@@ -60,11 +59,13 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="152.0" prefHeight="453.0" prefWidth="675.0">
+            <ScrollPane fx:id="scrollPane" layoutX="14.0" layoutY="152.0" prefHeight="400.0" prefWidth="675.0">
                <content>
                   <TilePane fx:id="tilePane" prefHeight="177.0" prefWidth="182.0" />
                </content>
             </ScrollPane>
+            <Button fx:id="button" layoutX="462.0" layoutY="552.0" mnemonicParsing="false" prefHeight="94.0" prefWidth="219.0" text="Button" />
+            <Button fx:id="secretButton" layoutX="14.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#receiveData" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: Transparent;" textFill="WHITE" />
          </children>
       </AnchorPane>
    </center>
