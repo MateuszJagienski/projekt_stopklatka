@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -32,7 +33,7 @@ public class LoginPageController implements Initializable {
     @FXML
     PasswordField loginPassword;
     @FXML
-    ImageView engbutton, polbutton;
+    ImageView engbutton, polbutton, mainLogo;
 
     private final MainApp mainApp = new MainApp();
     private Connection connection;
@@ -110,5 +111,12 @@ public class LoginPageController implements Initializable {
     public void setEngbutton(MouseEvent mouseEvent) {
         MainApp main = new MainApp();
         main.goToNextPage("/stopklatka/log_view/SignUpPage.fxml", "Sign Up Page");
+    }
+    int logo=1;
+    public void changeLogo(){
+        if(logo==6) logo=1;
+        Image myLogo = new Image(getClass().getResourceAsStream("/stopklatka/images/logo"+logo+".png"));
+        mainLogo.setImage(myLogo);
+        logo++;
     }
 }
