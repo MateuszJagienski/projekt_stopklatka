@@ -1,15 +1,12 @@
 package stopklatka.customer_controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -17,7 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import stopklatka.database.DatabaseConnection;
-import stopklatka.model.Film;
+import stopklatka.model.Movie;
 import stopklatka.model.User;
 
 import java.io.IOException;
@@ -35,8 +32,8 @@ public class CustomerHomeController implements Initializable{
     private DatabaseConnection databaseConnection;
     private PreparedStatement pst;
     private ResultSet rs;
-    private ArrayList<Film> filmArrayList = new ArrayList<>();
-    private ArrayList<Film> cartArrayList = new ArrayList<>();
+    private ArrayList<Movie> movieArrayList = new ArrayList<>();
+    private ArrayList<Movie> cartArrayList = new ArrayList<>();
     private User user;
     @FXML
     private Button button;
@@ -83,14 +80,14 @@ public class CustomerHomeController implements Initializable{
     }
 
     private void selectFilmQuery() {
-        String selectFilm = "SELECT * FROM `stopklatka`.`film`;";
+        String selectFilm = "SELECT * FROM `stopklatka`.`movies`;";
         try {
             pst = connection.prepareStatement(selectFilm);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Film film = new Film(rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getDouble("price"));
-                film.setId(rs.getInt("id"));
-                filmArrayList.add(film);
+                Movie movie = new Movie(rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getDouble("price"));
+                movie.setId(rs.getInt("id"));
+                movieArrayList.add(movie);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,21 +95,23 @@ public class CustomerHomeController implements Initializable{
     }
 
     private void loadFilmList() {
-        for (Film f : filmArrayList) {
+        for (Movie f : movieArrayList) {
             loadFilm(f);
         }
         scrollPane.setContent(tilePane);
     }
 
-    private void loadFilm(Film f) {
+    private void loadFilm(Movie f) {
         ImageView imageView = new ImageView(f.getImage());
         imageView.setFitHeight(111);
         imageView.setFitWidth(162);
         Region spacer = new Region();
         Label titleLabel = new Label();
+        titleLabel.setPrefWidth(162);
+        titleLabel.setWrapText(true);
         titleLabel.setText(f.getTitle());
         titleLabel.setFont(new Font("Bold", 16));
-        titleLabel.setPrefHeight(40);
+
         VBox vBox1 = new VBox(imageView, titleLabel);
         vBox1.setAlignment(Pos.TOP_CENTER);
         Text dTxt = new Text(f.getDescription());
@@ -127,7 +126,7 @@ public class CustomerHomeController implements Initializable{
     }
 
 
-    public void cartButtonClick(Film f) {
+    public void cartButtonClick(Movie f) {
         this.cartArrayList.add(f);
         button.setText("Buy" + "(" + this.cartArrayList.size() + ")");
     }

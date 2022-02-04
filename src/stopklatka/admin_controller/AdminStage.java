@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import stopklatka.model.Film;
+import stopklatka.model.Movie;
 
 import java.io.File;
 
@@ -22,11 +22,11 @@ public class AdminStage {
     private static Stage stage;
     private static boolean conf;
 
-    public static Film addFilmField() {
+    public static Movie addFilmField() {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         final String[] image = new String[1];
-        final Film[] film = new Film[1];
+        final Movie[] movie = new Movie[1];
         TextField titleTextField = new TextField();
         titleTextField.setPromptText("Title");
         TextField descriptionTextField = new TextField();
@@ -39,8 +39,7 @@ public class AdminStage {
         imageView.setFitHeight(250);
         imageView.setPreserveRatio(true);
         Button applyButton = new Button("Apply");
-        imageButton.setOnAction(new EventHandler<ActionEvent>()
-        {
+        imageButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e)
             {
                 image[0] = imageButtonClick();
@@ -49,7 +48,7 @@ public class AdminStage {
         } );
         applyButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                film[0] = applyButtonClick(titleTextField.getText(), descriptionTextField.getText(), image[0], priceTextField.getText());
+                movie[0] = applyButtonClick(titleTextField.getText(), descriptionTextField.getText(), image[0], priceTextField.getText());
             }
         } );
         VBox vBox = new VBox(10, titleTextField, descriptionTextField, priceTextField, imageButton, imageView, applyButton);
@@ -58,18 +57,18 @@ public class AdminStage {
         stage.setHeight(500);
         stage.setScene(scene);
         stage.showAndWait();
-        return film[0];
+        return movie[0];
     }
 
-    private static Film applyButtonClick(String s1, String s2, String s3, String d) {
+    private static Movie applyButtonClick(String s1, String s2, String s3, String d) {
         System.out.println(1);
         stage.close();
         if (s1.isBlank() || s2.isBlank() || s3.isBlank() || d.isBlank()) {
             return null;
         }
         try {
-            Film film = new Film(s1, s2, s3 , Double.valueOf(d));
-            return film;
+            Movie movie = new Movie(s1, s2, s3 , Double.valueOf(d));
+            return movie;
         } catch (NumberFormatException e) {
             return null;
         }
@@ -119,12 +118,15 @@ public class AdminStage {
         conf = true;
     }
 
-    public static Film editFilmField(Film f) {
+    public static Movie editFilmField(Movie f) {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        Film[] film = new Film[1];
+        Movie[] movie = new Movie[1];
         String[] image = new String[1];
         ImageView imageView = new ImageView(new Image(f.getImage()));
+        imageView.setFitWidth(250);
+        imageView.setFitHeight(250);
+        imageView.setPreserveRatio(true);
         Label titleLabel = new Label(f.getTitle());
         Label descriptionLabel = new Label(f.getDescription());
         Label priceLabel = new Label(f.getPrice().toString());
@@ -158,9 +160,9 @@ public class AdminStage {
                 t2 = descriptionTF.getText().isBlank() ? f.getDescription() : descriptionTF.getText();
                 t3 = image[0] == null ? f.getImage() : image[0];
                 t4 = priceTF.getText().isBlank() ? f.getPrice().toString() : priceTF.getText();
-                film[0] = applyButtonClick(t1, t2, t3, t4);
-                if (film[0] != null) {
-                    film[0].setId(f.getId());
+                movie[0] = applyButtonClick(t1, t2, t3, t4);
+                if (movie[0] != null) {
+                    movie[0].setId(f.getId());
                 }
             }
         } );
@@ -172,7 +174,6 @@ public class AdminStage {
         stage.setHeight(500);
         stage.setScene(scene);
         stage.showAndWait();
-        return film[0];
-
+        return movie[0];
     }
 }

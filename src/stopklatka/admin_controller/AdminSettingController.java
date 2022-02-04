@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import stopklatka.database.DatabaseConnection;
-import stopklatka.model.Film;
+import stopklatka.model.Movie;
 import stopklatka.model.User;
 import stopklatka.model.UserAccount;
 
@@ -27,7 +27,7 @@ public class AdminSettingController implements Initializable {
     private PreparedStatement pst;
     private ResultSet rs;
     private Statement stm;
-    private ArrayList<Film> filmArrayList = new ArrayList<>();
+    private ArrayList<Movie> movieArrayList = new ArrayList<>();
     private ArrayList<User> userArrayList = new ArrayList<>();
 
     @FXML
@@ -72,14 +72,14 @@ public class AdminSettingController implements Initializable {
     }
 
     private void selectFilmQuery() {
-        String selectFilm = "SELECT * FROM `stopklatka`.`film`;";
+        String selectFilm = "SELECT * FROM `stopklatka`.`movies`;";
         try {
             pst = connection.prepareStatement(selectFilm);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Film film = new Film(rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getDouble("price"));
-                film.setId(rs.getInt("id"));
-                filmArrayList.add(film);
+                Movie movie = new Movie(rs.getString("title"), rs.getString("description"), rs.getString("image"), rs.getDouble("price"));
+                movie.setId(rs.getInt("id"));
+                movieArrayList.add(movie);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -115,16 +115,16 @@ public class AdminSettingController implements Initializable {
     }
 
     private void addButtonClick() {
-        Film f = AdminStage.addFilmField();
+        Movie f = AdminStage.addFilmField();
         if (f == null) {
             return;
         }
-        String insertFilm = "INSERT INTO `stopklatka`.`film`\n" +
+        String insertFilm = "INSERT INTO `stopklatka`.`movies`\n" +
                             "(`image`,\n" +
                             "`description`,\n" +
                             "`price`, \n" +
                             "`title`) VALUES (?,?,?,?)";
-        String selectId = "SELECT `id` FROM `stopklatka`.`film`\n" +
+        String selectId = "SELECT `id` FROM `stopklatka`.`movies`\n" +
                           "ORDER BY `id` DESC LIMIT 1";
         connection = databaseConnection.getConnection();
         try {
@@ -156,13 +156,13 @@ public class AdminSettingController implements Initializable {
     }
 
     private void loadFilmList() {
-        for (Film f: filmArrayList) {
+        for (Movie f: movieArrayList) {
             loadFilm(f);
         }
         filmScrollPane.setContent(filmTilePane);
     }
 
-    private void loadFilm(Film f) {
+    private void loadFilm(Movie f) {
         ImageView imageView;
         try {
             imageView = new ImageView(f.getImage());
@@ -190,16 +190,16 @@ public class AdminSettingController implements Initializable {
         filmTilePane.getChildren().add(vBox);
     }
 
-    private void deleteButtonClick(VBox vBox, Film film) {
+    private void deleteButtonClick(VBox vBox, Movie movie) {
         if (AdminStage.confirmation("Are you sure?", "Delete", "yes", "no")) {
             filmTilePane.getChildren().remove(vBox);
-            deleteFilm(film);
+            deleteFilm(movie);
         }
     }
 
-    private void deleteFilm(Film film) {
-        int id = film.getId();
-        String deleteFilm = "DELETE FROM `stopklatka`.`film` \n" +
+    private void deleteFilm(Movie movie) {
+        int id = movie.getId();
+        String deleteFilm = "DELETE FROM `stopklatka`.`movies` \n" +
                 "WHERE `id` = " + id;
         try {
             stm = connection.createStatement();
@@ -209,27 +209,27 @@ public class AdminSettingController implements Initializable {
         }
     }
 
-    private void editButtonClick(Label label, ImageView imageView, Film f) {
-        Film film = AdminStage.editFilmField(f);
-        if (film == null) {
+    private void editButtonClick(Label label, ImageView imageView, Movie f) {
+        Movie movie = AdminStage.editFilmField(f);
+        if (movie == null) {
             return;
         }
-        label.setText(film.getTitle() + " " + film.getPrice() + " PLN");
-        imageView.setImage(new Image(film.getImage()));
-        String updateFilm = "UPDATE `film` \n" +
+        label.setText(movie.getTitle() + " " + movie.getPrice() + " PLN");
+        imageView.setImage(new Image(movie.getImage()));
+        String updateFilm = "UPDATE `movies` \n" +
                             "SET `image`=?, " +
                             "`description`=?," +
                             "`price`=?," +
                             "`title`=?" +
                             "WHERE `id`=?";
-        System.out.println(film.getId());
+        System.out.println(movie.getId());
         try {
             pst = connection.prepareStatement(updateFilm);
-            pst.setString(1, film.getImage());
-            pst.setString(2, film.getDescription());
-            pst.setDouble(3, film.getPrice());
-            pst.setString(4, film.getTitle());
-            pst.setInt(5, film.getId());
+            pst.setString(1, movie.getImage());
+            pst.setString(2, movie.getDescription());
+            pst.setDouble(3, movie.getPrice());
+            pst.setString(4, movie.getTitle());
+            pst.setInt(5, movie.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

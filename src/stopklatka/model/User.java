@@ -84,4 +84,12 @@ public class User {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 }

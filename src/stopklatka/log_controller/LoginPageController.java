@@ -42,6 +42,7 @@ public class LoginPageController implements Initializable {
     private Statement statement;
     private ResultSet rs;
     private User user;
+    private int logo=1;
 
     @FXML
     public void signupButtonPressed(MouseEvent mouseEvent) {
@@ -51,30 +52,32 @@ public class LoginPageController implements Initializable {
 
     @FXML
     public void setLoginButton(MouseEvent mouseEvent) {
-        if (validateUser()) {
-                // Step 2
+        int v = validateUser();
+        if (v == 1) {
                 Node node = (Node) mouseEvent.getSource();
-                // Step 3
                 Stage stage = (Stage) node.getScene().getWindow();
                 stage.close();
                 try {
-                    // Step 4
                     Parent root = FXMLLoader.load(getClass().getResource("/stopklatka/customer_view/CustomerHomeView.fxml"));
-                    // Step 5
                     stage.setUserData(user);
-                    // Step 6
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    // Step 7
                     stage.show();
                 } catch (IOException e) {
                     System.err.println(String.format("Error: %s", e.getMessage()));
                 }
         }
+        if (v == 2) {
+            mainApp.goToNextPage("/stopklatka/admin_view/AdminSettingView.fxml", "Admin Panel");
+        }
+        if (v == 0) {
+            System.out.println(123);
+        }
+
     }
 
     @FXML
-    public boolean validateUser() {
+    public int validateUser() {
         String validUsername = "SELECT * FROM `stopklatka`.`user` where USERNAME=(?) and password=(?) ;";
         connection = databaseConnection.getConnection();
         try {
@@ -89,17 +92,20 @@ public class LoginPageController implements Initializable {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                String count = rs.getString("username");
-                if (count.equals(loginUsername.getText())) {
+                if (rs.getInt("perm") == 1) {
+                    return 2;
+                }
+                String s = rs.getString("username");
+                if (s.equals(loginUsername.getText())) {
                     user = new User(rs.getString("username"), rs.getString("email"), rs.getString("password"), rs.getString("avatar"), new UserAccount(10000.0));
-                    return true;
+                    return 1;
                 }
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
         System.out.println("zły login lub haslo");
-        return false;
+        return 0;
     }
 
     @Override
@@ -112,7 +118,7 @@ public class LoginPageController implements Initializable {
         MainApp main = new MainApp();
         main.goToNextPage("/stopklatka/log_view/SignUpPage.fxml", "Sign Up Page");
     }
-    int logo=1;
+
     public void changeLogo(){
         if(logo==6) logo=1;
         Image myLogo = new Image(getClass().getResourceAsStream("/stopklatka/images/logo"+logo+".png"));

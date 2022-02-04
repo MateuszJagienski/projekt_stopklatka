@@ -1,6 +1,6 @@
 package stopklatka.model;
 
-public class Film {
+public class Movie {
 
     private String title;
     private String description;
@@ -9,7 +9,7 @@ public class Film {
     private int id;
 
 
-    public Film(String title, String description, String image, Double price) {
+    public Movie(String title, String description, String image, Double price) {
         this.title = title;
         this.description = description;
         this.image = image;
